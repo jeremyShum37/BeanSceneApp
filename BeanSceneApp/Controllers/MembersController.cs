@@ -54,7 +54,7 @@ namespace BeanSceneApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MemberId,JoinDate,LastLogin,UserId,FirstName,LastName,Email,Phone,Image,Role")] Member member)
+        public async Task<IActionResult> Create([Bind("MemberId,JoinDate,LastLogin,UserId,FirstName,LastName,Email,Phone,Password,Image,Role")] Member member)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace BeanSceneApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MemberId,JoinDate,LastLogin,UserId,FirstName,LastName,Email,Phone,Image,Role")] Member member)
+        public async Task<IActionResult> Edit(int id, [Bind("MemberId,JoinDate,LastLogin,UserId,FirstName,LastName,Email,Phone,Password,Image,Role")] Member member)
         {
             if (id != member.UserId)
             {

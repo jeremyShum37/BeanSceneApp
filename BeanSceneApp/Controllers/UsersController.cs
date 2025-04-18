@@ -44,6 +44,7 @@ namespace BeanSceneApp.Controllers
         }
 
         // GET: Users/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -54,11 +55,44 @@ namespace BeanSceneApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,FirstName,LastName,Email,Phone,Image,Role")] User user)
+        public async Task<IActionResult> Create(User user, IFormFile Image)
         {
+            //[Bind("UserId,FirstName,LastName,Email,Phone,Password,Image,Role")]
+            User user1 = new User();
+            user1.FirstName = user.FirstName;
+            user1.LastName = user.LastName;
+            user1.Email = user.Email;
+            user1.Phone = user.Phone;
+            user1.Password = user.Password;
+            user1.Role = user.Role;
+
+            if (Image != null && Image.Length > 0)
+            {
+                var fileName = Path.GetFileName(Image.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+                if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images")))
+                {
+                    Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images"));
+                }
+                // Check if the file already exists, upload it only if it doesn't exist
+                if (!System.IO.File.Exists(filePath))
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await Image.CopyToAsync(stream);
+                        ViewBag.Message = "File uploaded successfully.";
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = "File already exists. Please choose a different file.";
+                }
+                user1.Image = "/images/" + fileName;
+            }
+
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                _context.Add(user1);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -86,23 +120,59 @@ namespace BeanSceneApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,FirstName,LastName,Email,Phone,Image,Role")] User user)
+        public async Task<IActionResult> Edit(int id, User user, IFormFile Image)
         {
+            //[Bind("UserId,FirstName,LastName,Email,Phone,Password,Image,Role")]
+            User user1 = new User();
             if (id != user.UserId)
             {
                 return NotFound();
             }
+            else
+            {
+                user1.UserId = user.UserId;
+                user1.FirstName = user.FirstName;
+                user1.LastName = user.LastName;
+                user1.Email = user.Email;
+                user1.Phone = user.Phone;
+                user1.Password = user.Password;
+                user1.Role = user.Role;
 
+                if (Image != null && Image.Length > 0)
+                {
+                    var fileName = Path.GetFileName(Image.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+                    if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images")))
+                    {
+                        Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images"));
+                    }
+                    // Check if the file already exists, upload it only if it doesn't exist
+                    if (!System.IO.File.Exists(filePath))
+                    {
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await Image.CopyToAsync(stream);
+                            ViewBag.Message = "File uploaded successfully.";
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Message = "File already exists. Please choose a different file.";
+                    }
+                    user1.Image = "/images/" + fileName;
+                }
+            }
+        
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(user1);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.UserId))
+                    if (!UserExists(user1.UserId))
                     {
                         return NotFound();
                     }
@@ -113,7 +183,7 @@ namespace BeanSceneApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(user1);
         }
 
         // GET: Users/Delete/5

@@ -51,6 +51,7 @@ namespace BeanSceneApp.Migrations
                     LastName = table.Column<string>(type: "varchar(50)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     User_Type = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),

@@ -167,6 +167,10 @@ namespace BeanSceneApp.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 

@@ -3,32 +3,31 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeanSceneApp.Models
 {
-    public abstract class User
+    public class User
     {
         [Key]
         public int UserId { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(50)")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = "";
 
         [Required]
         [Column(TypeName = "varchar(50)")]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = "";
 
         [Required, EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; } = "";
 
         [Phone]
         public string? Phone { get; set; }
 
         [Required]
-        [NotMapped]
-        public string? Password { get; set; }
+        public string Password { get; set; } = "";
 
         public string? Image { get; set; }
 
         [Required]
-        public string Role { get; set; }
+        public string Role { get; set; } = "";
     }
 }

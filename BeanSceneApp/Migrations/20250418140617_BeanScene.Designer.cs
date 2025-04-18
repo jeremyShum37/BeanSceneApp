@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeanSceneApp.Migrations
 {
     [DbContext(typeof(BeanSceneAppContext))]
-    [Migration("20250418090534_BeanScene")]
+    [Migration("20250418140617_BeanScene")]
     partial class BeanScene
     {
         /// <inheritdoc />
@@ -169,6 +169,10 @@ namespace BeanSceneApp.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
