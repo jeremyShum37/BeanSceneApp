@@ -10,22 +10,22 @@ using BeanSceneApp.Models;
 
 namespace BeanSceneApp.Controllers
 {
-    public class UsersController : Controller
+    public class SittingsController : Controller
     {
         private readonly BeanSceneAppContext _context;
 
-        public UsersController(BeanSceneAppContext context)
+        public SittingsController(BeanSceneAppContext context)
         {
             _context = context;
         }
 
-        // GET: Users
+        // GET: Sittings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.User.ToListAsync());
+            return View(await _context.Sittings.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Sittings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace BeanSceneApp.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (user == null)
+            var sitting = await _context.Sittings
+                .FirstOrDefaultAsync(m => m.SittingId == id);
+            if (sitting == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(sitting);
         }
 
-        // GET: Users/Create
+        // GET: Sittings/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Sittings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,FirstName,LastName,Email,Phone,Image,Role")] User user)
+        public async Task<IActionResult> Create([Bind("SittingId,SittingType,StartTime,EndTime,Capacity,IsClosed")] Sitting sitting)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                _context.Add(sitting);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(sitting);
         }
 
-        // GET: Users/Edit/5
+        // GET: Sittings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace BeanSceneApp.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
-            if (user == null)
+            var sitting = await _context.Sittings.FindAsync(id);
+            if (sitting == null)
             {
                 return NotFound();
             }
-            return View(user);
+            return View(sitting);
         }
 
-        // POST: Users/Edit/5
+        // POST: Sittings/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,FirstName,LastName,Email,Phone,Image,Role")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("SittingId,SittingType,StartTime,EndTime,Capacity,IsClosed")] Sitting sitting)
         {
-            if (id != user.UserId)
+            if (id != sitting.SittingId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace BeanSceneApp.Controllers
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(sitting);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.UserId))
+                    if (!SittingExists(sitting.SittingId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace BeanSceneApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(sitting);
         }
 
-        // GET: Users/Delete/5
+        // GET: Sittings/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,34 +124,34 @@ namespace BeanSceneApp.Controllers
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (user == null)
+            var sitting = await _context.Sittings
+                .FirstOrDefaultAsync(m => m.SittingId == id);
+            if (sitting == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(sitting);
         }
 
-        // POST: Users/Delete/5
+        // POST: Sittings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var user = await _context.User.FindAsync(id);
-            if (user != null)
+            var sitting = await _context.Sittings.FindAsync(id);
+            if (sitting != null)
             {
-                _context.User.Remove(user);
+                _context.Sittings.Remove(sitting);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
+        private bool SittingExists(int id)
         {
-            return _context.User.Any(e => e.UserId == id);
+            return _context.Sittings.Any(e => e.SittingId == id);
         }
     }
 }

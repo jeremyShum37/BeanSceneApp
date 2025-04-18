@@ -1,4 +1,4 @@
-﻿@model BeanSceneApp.Models.User
+﻿@model BeanSceneApp.Models.Member
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,12 +6,27 @@
 
 <h1>Edit</h1>
 
-<h4>User</h4>
+<h4>Member</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MemberId" class="control-label"></label>
+                <input asp-for="MemberId" class="form-control" />
+                <span asp-validation-for="MemberId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JoinDate" class="control-label"></label>
+                <input asp-for="JoinDate" class="form-control" />
+                <span asp-validation-for="JoinDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastLogin" class="control-label"></label>
+                <input asp-for="LastLogin" class="form-control" />
+                <span asp-validation-for="LastLogin" class="text-danger"></span>
+            </div>
             <input type="hidden" asp-for="UserId" />
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>

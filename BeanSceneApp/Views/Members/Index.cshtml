@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BeanSceneApp.Models.User>
+﻿@model IEnumerable<BeanSceneApp.Models.Member>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,6 +12,15 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JoinDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastLogin)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
@@ -36,6 +45,15 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastLogin)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>

@@ -13,7 +13,21 @@ namespace BeanSceneApp.Data
             : base(options)
         {
         }
+        public DbSet<User> User { get; set; } = default!;
+        public DbSet<Member> Member { get; set; } = default!;
+        public DbSet<Reservation> Reservations { get; set; } = default!;
+        public DbSet<Sitting> Sittings { get; set; } = default!;
+        public DbSet<Table> Table { get; set; } = default!;
+        public DbSet<Area> Area { get; set; } = default!;
 
-        public DbSet<BeanSceneApp.Models.User> User { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Table>().HasKey(t => new { t.TableId, t.ReservationId });
+
+            modelBuilder.Entity<User>()
+                .HasDiscriminator<string>("User_Type")
+                .HasValue<User>("User_Base")
+                .HasValue<Member>("User_Memb");
+        }
     }
 }
