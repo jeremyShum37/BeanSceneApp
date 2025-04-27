@@ -55,7 +55,6 @@ namespace BeanSceneApp.Migrations
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     User_Type = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
-                    MemberId = table.Column<int>(type: "int", nullable: true),
                     JoinDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastLogin = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -76,6 +75,7 @@ namespace BeanSceneApp.Migrations
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Duration = table.Column<int>(type: "int", nullable: false),
                     GuestCount = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "varchar(20)", nullable: false),
                     Source = table.Column<string>(type: "varchar(20)", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SittingId = table.Column<int>(type: "int", nullable: false),

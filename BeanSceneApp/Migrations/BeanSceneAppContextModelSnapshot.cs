@@ -79,6 +79,10 @@ namespace BeanSceneApp.Migrations
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
+
                     b.HasKey("ReservationId");
 
                     b.HasIndex("MemberId");
@@ -201,9 +205,6 @@ namespace BeanSceneApp.Migrations
 
                     b.Property<DateTime>("LastLogin")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("User_Memb");
                 });

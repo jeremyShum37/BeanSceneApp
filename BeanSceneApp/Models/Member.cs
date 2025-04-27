@@ -5,8 +5,6 @@ namespace BeanSceneApp.Models
 {
     public class Member : User
     {
-        public int MemberId { get; set; }
-
         [Required]
         public DateTime JoinDate { get; set; } = new DateTime();
 

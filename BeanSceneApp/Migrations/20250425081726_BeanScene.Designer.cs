@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeanSceneApp.Migrations
 {
     [DbContext(typeof(BeanSceneAppContext))]
-    [Migration("20250418140617_BeanScene")]
+    [Migration("20250425081726_BeanScene")]
     partial class BeanScene
     {
         /// <inheritdoc />
@@ -81,6 +81,10 @@ namespace BeanSceneApp.Migrations
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
 
                     b.HasKey("ReservationId");
 
@@ -204,9 +208,6 @@ namespace BeanSceneApp.Migrations
 
                     b.Property<DateTime>("LastLogin")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("User_Memb");
                 });

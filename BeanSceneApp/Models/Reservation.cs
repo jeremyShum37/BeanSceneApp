@@ -32,6 +32,10 @@ namespace BeanSceneApp.Models
 
         [Required]
         [Column(TypeName = "varchar(20)")]
+        public string Status{ get; set; } = "Pending";
+
+        [Required]
+        [Column(TypeName = "varchar(20)")]
         public string Source { get; set; } = "";
 
         public string? Notes { get; set; }
