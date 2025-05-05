@@ -45,9 +45,13 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <i class="bi bi-backspace">
+        <a asp-action="Index">Back to List</a>
+    </i>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
