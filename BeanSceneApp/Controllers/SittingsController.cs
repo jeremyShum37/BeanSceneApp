@@ -56,6 +56,11 @@ namespace BeanSceneApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SittingId,SittingType,StartTime,EndTime,Capacity,IsClosed")] Sitting sitting)
         {
+            if (sitting.StartTime == sitting.EndTime)
+            {
+                ModelState.AddModelError("StartTime", "StartTime Can't be same as EndTime");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(sitting);

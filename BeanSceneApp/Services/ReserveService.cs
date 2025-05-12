@@ -16,6 +16,7 @@ namespace BeanSceneApp.Services
         {
             _DB.Add(r);
             _DB.SaveChanges();
+
             return "Reservation Has Been Created Successfully";
         }
 
