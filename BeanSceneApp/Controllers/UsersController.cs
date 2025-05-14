@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BeanSceneApp.Data;
 using BeanSceneApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeanSceneApp.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly BeanSceneAppContext _context;

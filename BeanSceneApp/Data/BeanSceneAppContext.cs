@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BeanSceneApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace BeanSceneApp.Data
 {
-    public class BeanSceneAppContext : DbContext
+    public class BeanSceneAppContext : IdentityDbContext
     {
         public BeanSceneAppContext (DbContextOptions<BeanSceneAppContext> options)
             : base(options)
@@ -22,6 +24,10 @@ namespace BeanSceneApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Identity Fix
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(l => new { l.LoginProvider, l.ProviderKey });
+
             modelBuilder.Entity<Table>().HasKey(t => new { t.TableId, t.ReservationId });
 
             modelBuilder.Entity<User>()

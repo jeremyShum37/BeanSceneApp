@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using BeanSceneApp.Data;
 using BeanSceneApp.Services;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<BeanSceneAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BeanSceneAppContext") ?? throw new InvalidOperationException("Connection string 'BeanSceneAppContext' not found.")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<BeanSceneAppContext>();
 
 builder.Services.AddScoped<InterReservService, ReserveService>();
 builder.Services.AddScoped<AbstrReservService, ReserveService>();
@@ -33,5 +36,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-
+app.MapRazorPages();
 app.Run();
