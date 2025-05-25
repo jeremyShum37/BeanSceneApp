@@ -1,0 +1,19 @@
+﻿@model IEnumerable<BeanSceneApp.Models.Contact>
+
+@{
+    ViewData["Title"] = "Contacts";
+}
+
+<h1>Contacts</h1>
+
+<p>
+    <h2>List of Contacts</h2>
+    @foreach (Contact contact in Model)
+    {
+        <div>
+            <h3>@contact.Address, @contact.City</h3>
+            <p>Email: @contact.Email</p>
+            <p>Phone Number: @contact.Phone</p>
+        </div>
+    }
+</p>

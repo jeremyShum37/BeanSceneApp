@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using BeanSceneApp.Data;
 using BeanSceneApp.Models;
 using BeanSceneApp.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeanSceneApp.Controllers
 {
+    //[Authorize]
     public class ReservationsController : Controller
     {
         private readonly BeanSceneAppContext _context;
