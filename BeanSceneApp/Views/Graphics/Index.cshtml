@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "2D Graphics";
+}
+<h1>@ViewBag.Title</h1>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <p>Welcome to Kids Zone!</p>
+                    <p>Have Fun!</p>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <button class="btn" onclick="generateCircle()">Draw Circle</button>
+            <button class="btn" onclick="generateRectangle()">Draw Rectangle</button>
+            <button class="btn" onclick="generateTriangle()">Draw Triangle</button>
+        </div>
+    </header>
+    <div class="d-block" p-3>
+        <img id="imgCircle" name="imgCircle" src="" alt="generated circle" hidden />
+        <img id="imgRect" name="imgRect" src="" alt="generated rectangle" hidden />
+        <img id="imgTri" name="imgTri" src="" alt="generated triangle" hidden />
+    </div>
+</body>
+<script>
+    function generateCircle() {
+        document.getElementById("imgCircle").src = "@Url.Action("GenerateCircle", "Graphics")" + "?t=" + new Date().getTime();
+        document.getElementById("imgCircle").hidden = false;
+    }
+    function generateRectangle() {
+        document.getElementById("imgRect").src = "@Url.Action("GenerateRectangle", "Graphics")" + "?t=" + new Date().getTime();
+        document.getElementById("imgRect").hidden = false;
+    }
+    function generateTriangle() {
+        document.getElementById("imgTri").src = "@Url.Action("GenerateTriangle", "Graphics")" + "?t=" + new Date().getTime();
+        document.getElementById("imgTri").hidden = false;
+    }
+</script>
