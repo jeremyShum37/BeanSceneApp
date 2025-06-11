@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BeanSceneApp.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = "Admin")]
     public class ReservationsController : Controller
     {
         private readonly BeanSceneAppContext _context;

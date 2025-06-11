@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BeanSceneApp.Data
 {
-    public class BeanSceneAppContext : IdentityDbContext
+    public class BeanSceneAppContext : IdentityDbContext<IdentityUser>
     {
         public BeanSceneAppContext (DbContextOptions<BeanSceneAppContext> options)
             : base(options)

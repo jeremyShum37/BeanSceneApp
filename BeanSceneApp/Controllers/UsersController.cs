@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BeanSceneApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class UsersController : Controller
     {
         private readonly BeanSceneAppContext _context;
