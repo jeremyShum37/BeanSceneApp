@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BeanSceneApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
+
     public class ReservationsController : Controller
     {
         private readonly BeanSceneAppContext _context;
@@ -54,6 +54,7 @@ namespace BeanSceneApp.Controllers
         }
 
         // GET: Reservations/Create
+        [Authorize(Roles = "Admin, Staff")]
         public IActionResult Create()
         {
             ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email");

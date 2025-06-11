@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BeanSceneApp.Data;
+using BeanSceneApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BeanSceneApp.Data;
-using BeanSceneApp.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BeanSceneApp.Controllers
 {
+    [Authorize(Roles = "Admin, Staff")]
     public class SittingsController : Controller
     {
         private readonly BeanSceneAppContext _context;
