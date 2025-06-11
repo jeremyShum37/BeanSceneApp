@@ -57,8 +57,8 @@ namespace BeanSceneApp.Controllers
         [Authorize(Roles = "Admin, Staff")]
         public IActionResult Create()
         {
-            ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email");
-            ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "SittingType");
+            //ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email");
+            ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "TableCode");
             return View();
         }
 
@@ -78,7 +78,7 @@ namespace BeanSceneApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             //ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email", reservation.MemberId);
-            ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "SittingType", reservation.SittingId);
+            ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "TableCode", reservation.SittingId);
             return View(reservation);
         }
 
@@ -96,7 +96,7 @@ namespace BeanSceneApp.Controllers
                 return NotFound();
             }
            // ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email", reservation.MemberId);
-            ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "SittingType", reservation.SittingId);
+            ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "TableCode", reservation.SittingId);
             return View(reservation);
         }
 
@@ -132,7 +132,7 @@ namespace BeanSceneApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             //ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email", reservation.MemberId);
-            ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "SittingType", reservation.SittingId);
+            ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "TableCode", reservation.SittingId);
             return View(reservation);
         }
 

@@ -10,12 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<BeanSceneAppContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BeanSceneAppContext") ?? throw new InvalidOperationException("Connection string 'BeanSceneAppContext' not found.")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BeanSceneAppContext>();
 
 builder.Services.AddScoped<InterReservService, ReserveService>();
 builder.Services.AddScoped<AbstrReservService, ReserveService>();
+
+//builder.Services.AddTransient<EmailService>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
