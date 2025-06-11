@@ -4,6 +4,7 @@ using MimeKit;
 
 namespace BeanSceneApp.Services
 {
+    //("jeremyylshum@gmail.com", "termvlebmmtyuexh");
     public class EmailOuterService
     {
         public EmailInnerService Inner { get; set; }
@@ -26,23 +27,28 @@ namespace BeanSceneApp.Services
             {
                 this.obj = outer;
             }
-            public string SendEmailConfirmation(string emailTo, String Lname, string userName, string password)
+            public string SendEmailConfirmation(string emailTo, String name, string userName, string password)
             {
                 try
                 {
                     var email = new MimeMessage();
                     email.From.Add(MailboxAddress.Parse("jeremyylshum@gmail.com"));
                     email.To.Add(MailboxAddress.Parse(emailTo));
-                    email.Subject = "Registration Confirmation";
-                    email.Body = new TextPart(TextFormat.Plain) { Text = "Dear " + Lname + ",\n" + "You have successfully register to the RetailWebApp. \n Your user name: " + userName + " and password: " + password + "\n Kind Regards\n RetailWebApp Service Team" };
+                    email.Subject = "Registration Confirmation - Bean Scene App";
+                    email.Body = new TextPart(TextFormat.Plain)
+                    {
+                        Text = $"Dear {name},\n\n" +
+                               "Thank you for registering with Bean Scene App!\n\n" +
+                              $"Your account details:\n" +
+                              $"Username: {userName}\n" +
+                              $"Password: {password}\n\n" +
+                              "You can now log in to our system using these credentials.\n\n" +
+                              "Kind Regards,\n" +
+                              "The Bean Scene Team"
+                    };
 
                     // send email
                     using var smtp = new MailKit.Net.Smtp.SmtpClient();
-                    //using Ethereal smtp
-                    //smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
-                    //smtp.Authenticate("terry53@ethereal.email", "WRSWWnjgUtNntamxA9");
-
-                    //using Gmail smtp
                     smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
                     smtp.Authenticate("jeremyylshum@gmail.com", "termvlebmmtyuexh");
                     smtp.Send(email);
@@ -52,7 +58,7 @@ namespace BeanSceneApp.Services
                 {
                     return ex.Message;
                 }
-                return "You will recieved an confirmation email with username and password";
+                return "Email sent successfully";
             }
         }
     }
