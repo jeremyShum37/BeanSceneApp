@@ -29,7 +29,7 @@ namespace BeanSceneApp.Controllers
         // GET: Reservations
         public async Task<IActionResult> Index()
         {
-            var beanSceneAppContext = _context.Reservations.Include(r => r.Member).Include(r => r.Sitting);
+            var beanSceneAppContext = _context.Reservations.Include(r => r.Sitting);
             return View(await beanSceneAppContext.ToListAsync());
         }
 
@@ -42,7 +42,7 @@ namespace BeanSceneApp.Controllers
             }
 
             var reservation = await _context.Reservations
-                .Include(r => r.Member)
+                //.Include(r => r.Member)
                 .Include(r => r.Sitting)
                 .FirstOrDefaultAsync(m => m.ReservationId == id);
             if (reservation == null)
@@ -77,7 +77,7 @@ namespace BeanSceneApp.Controllers
                 //await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email", reservation.MemberId);
+            //ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email", reservation.MemberId);
             ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "SittingType", reservation.SittingId);
             return View(reservation);
         }
@@ -95,7 +95,7 @@ namespace BeanSceneApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email", reservation.MemberId);
+           // ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email", reservation.MemberId);
             ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "SittingType", reservation.SittingId);
             return View(reservation);
         }
@@ -131,7 +131,7 @@ namespace BeanSceneApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email", reservation.MemberId);
+            //ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email", reservation.MemberId);
             ViewData["SittingId"] = new SelectList(_context.Sittings, "SittingId", "SittingType", reservation.SittingId);
             return View(reservation);
         }
@@ -145,7 +145,7 @@ namespace BeanSceneApp.Controllers
             }
 
             var reservation = await _context.Reservations
-                .Include(r => r.Member)
+                //.Include(r => r.Member)
                 .Include(r => r.Sitting)
                 .FirstOrDefaultAsync(m => m.ReservationId == id);
             if (reservation == null)

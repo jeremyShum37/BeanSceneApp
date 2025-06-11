@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeanSceneApp.Migrations
 {
     [DbContext(typeof(BeanSceneAppContext))]
-    [Migration("20250610035656_100625")]
-    partial class _100625
+    [Migration("20250611062920_beanmem")]
+    partial class beanmem
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,7 +63,7 @@ namespace BeanSceneApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MemberId")
+                    b.Property<int?>("MemberUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
@@ -88,7 +88,7 @@ namespace BeanSceneApp.Migrations
 
                     b.HasKey("ReservationId");
 
-                    b.HasIndex("MemberId");
+                    b.HasIndex("MemberUserId");
 
                     b.HasIndex("SittingId");
 
@@ -416,17 +416,15 @@ namespace BeanSceneApp.Migrations
 
             modelBuilder.Entity("BeanSceneApp.Models.Reservation", b =>
                 {
-                    b.HasOne("BeanSceneApp.Models.Member", "Member")
+                    b.HasOne("BeanSceneApp.Models.Member", null)
                         .WithMany("Reservation")
-                        .HasForeignKey("MemberId");
+                        .HasForeignKey("MemberUserId");
 
                     b.HasOne("BeanSceneApp.Models.Sitting", "Sitting")
                         .WithMany("Reservation")
                         .HasForeignKey("SittingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Member");
 
                     b.Navigation("Sitting");
                 });

@@ -39,7 +39,7 @@ namespace BeanSceneApp.Models
         public int SittingId { get; set; }
         public Sitting? Sitting { get; set; }
 
-        public int? MemberId { get; set; }
-        public Member? Member { get; set; }
+        //public int? MemberId { get; set; }
+        //public Member? Member { get; set; }
     }
 }
