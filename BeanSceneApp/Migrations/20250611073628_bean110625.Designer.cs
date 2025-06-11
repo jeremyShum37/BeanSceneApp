@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeanSceneApp.Migrations
 {
     [DbContext(typeof(BeanSceneAppContext))]
-    [Migration("20250611062920_beanmem")]
-    partial class beanmem
+    [Migration("20250611073628_bean110625")]
+    partial class bean110625
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,9 +106,6 @@ namespace BeanSceneApp.Migrations
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("IsClosed")
                         .HasColumnType("bit");
 
@@ -116,8 +113,9 @@ namespace BeanSceneApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("TableCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SittingId");
 

@@ -11,10 +11,7 @@ namespace BeanSceneApp.Models
         public string SittingType { get; set; } // Breakfast/Lunch/Dinner
 
         [Required]
-        public DateTime StartTime { get; set; }
-
-        [Required]
-        public DateTime EndTime { get; set; }
+        public string TableCode { get; set; }
 
         [Required]
         public int Capacity { get; set; }

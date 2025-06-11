@@ -6,70 +6,48 @@
 
 <h1>Index</h1>
 
-@* <p> *@
-@*     <i class="bi bi-plus-circle"> *@
-@*         <a asp-action="Create">Create New</a> *@
-@*     </i> *@
-@* </p> *@
-<div class="container p-3">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">Sitting List</h2>
-        </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Sittings" asp-action="Create" class="btn btn-primary" width="20%">
-                <i class="bi bi-plus-circle"></i>&nbsp;Add New Sitting
-            </a>
-        </div>
-    </div>
-    <br />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.SittingType)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EndTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Capacity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsClosed)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SittingType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EndTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Capacity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsClosed)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.SittingId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.SittingId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.SittingId">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SittingType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TableCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsClosed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SittingType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TableCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsClosed)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SittingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SittingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SittingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
