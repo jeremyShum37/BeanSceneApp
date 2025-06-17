@@ -54,7 +54,7 @@ namespace BeanSceneApp.Controllers
         }
 
         // GET: Reservations/Create
-        [Authorize(Roles = "Admin, Staff")]
+        [Authorize(Roles = "Admin, Manager, Staff")]
         public IActionResult Create()
         {
             //ViewData["MemberId"] = new SelectList(_context.Member, "UserId", "Email");
@@ -83,6 +83,7 @@ namespace BeanSceneApp.Controllers
         }
 
         // GET: Reservations/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -137,6 +138,7 @@ namespace BeanSceneApp.Controllers
         }
 
         // GET: Reservations/Delete/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

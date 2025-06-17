@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BeanSceneApp.Data;
 using BeanSceneApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeanSceneApp.Controllers
 {
@@ -42,7 +43,7 @@ namespace BeanSceneApp.Controllers
 
             return View(sitting);
         }
-
+        [Authorize(Roles = "Admin, Manager")]
         // GET: Sittings/Create
         public IActionResult Create()
         {
@@ -64,7 +65,7 @@ namespace BeanSceneApp.Controllers
             }
             return View(sitting);
         }
-
+        [Authorize(Roles = "Admin, Manager")]
         // GET: Sittings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -115,7 +116,7 @@ namespace BeanSceneApp.Controllers
             }
             return View(sitting);
         }
-
+        [Authorize(Roles = "Admin, Manager")]
         // GET: Sittings/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

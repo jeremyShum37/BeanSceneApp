@@ -44,6 +44,7 @@ namespace BeanSceneApp.Controllers
         }
 
         // GET: Areas/Create
+
         public IActionResult Create()
         {
             return View();
